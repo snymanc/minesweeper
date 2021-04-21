@@ -150,7 +150,7 @@ class Board:
 
 
 # play the game
-def play(dim_size=10, num_bombs=10):
+def play(dim_size, num_bombs):
     # 1) create the board and plant bombs
     board = Board(dim_size, num_bombs)
 
@@ -163,7 +163,8 @@ def play(dim_size=10, num_bombs=10):
 
     while len(board.dug) < board.dim_size ** 2 - num_bombs:
         print(board)
-        user_input = re.split(',(\\s)*', input("Where would you like to dig? Input as row,col: "))
+        user_input = re.split(
+            ',(\\s)*', input("Where would you like to dig? Input as row,col: "))
         row, col = int(user_input[0]), int(user_input[-1])
         if row < 0 or row >= board.dim_size or col < 0 or col >= dim_size:
             print("Invalid location Try again?")
@@ -186,4 +187,6 @@ def play(dim_size=10, num_bombs=10):
 
 
 if __name__ == '__main__':
-    play()
+    # the user_dim_siz will be used for the number of bombs as well
+    user_dim_siz = int(input("Size of the board (10, 20, 50, ...)? "))
+    play(user_dim_siz, user_dim_siz)

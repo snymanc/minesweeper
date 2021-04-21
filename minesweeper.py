@@ -165,7 +165,14 @@ def play(dim_size, num_bombs):
         print(board)
         user_input = re.split(
             ',(\\s)*', input("Where would you like to dig? Input as row,col: "))
-        row, col = int(user_input[0]), int(user_input[-1])
+        
+        # check for a valid value by cast to integer return invalid
+        try:
+            row, col = int(user_input[0]), int(user_input[-1])
+        except ValueError:
+            print('Invalid input! Try again?')
+            continue
+
         if row < 0 or row >= board.dim_size or col < 0 or col >= dim_size:
             print("Invalid location Try again?")
             continue
